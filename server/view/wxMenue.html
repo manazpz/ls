@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="" name="description" />
+    <meta content="webthemez" name="author" />
+    <title>律师-后台管理系统</title>
+    <!-- Bootstrap Styles-->
+    <link href="../assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="../assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="../assets/css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link href="../assets/dist/bootstrap-table.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootoast.css">
+
+</head>
+
+<body>
+<div id="wrapper">
+    <nav class="navbar navbar-default top-navbar" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../view/index.html"><strong> 后台管理</strong></a>
+
+            <div id="sideNav" href="">
+                <i class="fa fa-bars icon"></i>
+            </div>
+        </div>
+
+        <ul class="nav navbar-top-links navbar-right">
+            <!-- /.dropdown -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i> 登出</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+        </ul>
+    </nav>
+    <!--/. NAV TOP  -->
+    <nav class="navbar-default navbar-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="main-menu">
+
+                <li>
+                    <a href="../view/ocList.html"><i class="fa fa-desktop"></i> 在线咨询</a>
+                </li>
+                <li>
+                    <a href="../view/pcList.html"><i class="fa fa-phone"></i> 电话咨询</a>
+                </li>
+                <li>
+                    <a class="active-menu" href="#"><i class="fa fa-sitemap"></i> 微信公众号<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="active-menu" href="../view/wxMenue.html">自定义菜单</a>
+                        </li>
+                        <li>
+                            <a href="../view/pushed.html">咨询推送</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="../view/lawyer.html"><i class="fa fa-user"></i> 律師管理</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </nav>
+    <!-- /. NAV SIDE  -->
+
+    <div id="page-wrapper">
+        <div class="header">
+            <h1 class="page-header">
+                自定义菜单 <small></small>
+            </h1>
+        </div>
+        <div id="page-inner">
+
+            <!-- /. ROW  -->
+            <div class="row" >
+                <div id="toolbar">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                        <i class="fd fd-adn">新增菜单</i>
+                    </button>
+                    <button class="btn btn-primary" onclick="sync()">
+                        <i class="fd fd-adn">同步至公众号</i>
+                    </button>
+                </div>
+                <div class="table-responsive">
+                    <table id="tb_departments">
+                    </table>
+                </div>
+            </div>
+
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">
+                                微信菜单编辑
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <input type="text" name="id" style="display:none"/>
+                            <div>
+                                <span>一级菜单名:&nbsp;</span><input type="text" name="wx_name1" />
+                            </div>
+                            <div style="height:10px"> </div>
+                            <div>
+                                <span>二级菜单名:&nbsp;</span><input type="text" name="wx_name2" />
+                            </div>
+                            <div style="height:10px"> </div>
+                            <div>
+                                <span>触&nbsp;发&nbsp;&nbsp;类&nbsp;型:&nbsp;</span>
+                                <select name="wx_type">
+                                    <option value ="view">网页链接</option>
+                                    <option value ="click">点击</option>
+                                </select>
+                            </div>
+                            <div style="height:10px"> </div>
+                            <div>
+                                <span>组件标识符:&nbsp;</span><input type="text" name="wx_key" />
+                            </div>
+                            <div style="height:10px"> </div>
+                            <div>
+                                <span>网&nbsp;址&nbsp;&nbsp;链&nbsp;接:&nbsp;</span><input type="text" name="wx_url" />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" onclick="closeWxMenue(this)">
+                                关闭
+                            </button>
+                            <button type="button" class="btn btn-primary" onclick="addWxMenue(this)">
+                                提交更改
+                            </button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+        </div>
+    </div>
+</div>
+<script src="../assets/js/jquery-1.10.2.js"></script>
+<!-- Bootstrap Js -->
+<script src="../assets/js/bootstrap.min.js"></script>
+<!-- Metis Menu Js -->
+<script src="../assets/js/jquery.metisMenu.js"></script>
+<!-- Custom Js -->
+<script src="../assets/js/custom-scripts.js"></script>
+<script src="../assets/dist/bootstrap-table.js"></script>
+<script src="../assets/dist/locale/bootstrap-table-zh-CN.js"></script>
+
+<script type="text/javascript" src="../assets/js/bootoast.js"></script>
+<script type="text/javascript" src="../controll/wxMenue.js"></script>
+
+</body>
+
+</html>
