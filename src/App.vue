@@ -32,6 +32,10 @@
                         this.$store.dispatch('hideNav1');
                         break;
                     case '/lawyerList':
+                    case '/beLawyer':
+                        this.$store.dispatch('hideNav');
+                        this.$store.dispatch('hideNav1');
+                        break;
                     case '/phoneCounselingDetail':
                         this.$store.dispatch('hideNav');
                         break;
@@ -60,6 +64,10 @@
                     this.$store.dispatch('hideNav1');
                     break;
                 case '/lawyerList':
+                case '/beLawyer':
+                    this.$store.dispatch('hideNav');
+                    this.$store.dispatch('hideNav1');
+                    break;
                 case '/phoneCounselingDetail':
                 case '/PhoneCounselingList':
                     this.$store.dispatch('hideNav');

@@ -66,6 +66,16 @@ module.exports = {
                 return "";
         }
     },
+    ischeck: (str)=> {
+        switch (str){
+            case 'Y':
+                return "已审核";
+            case 'N':
+                return "未审核";
+            default :
+                return "";
+        }
+    },
     isLogin: (req, res, next)=>{
         if (!req.session.loginUser) {
             res.status(200).send({ 'msg': '未登录', 'status': -1 }).end();

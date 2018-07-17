@@ -165,9 +165,12 @@ module.exports = () => {
         query(sql1,function (err,data) {
             size = data[0].num;
         });
-        let sql = `select  *  from ls_list ORDER BY IS_FLAG limit ${s1}, ${s2}`;
+        let sql = `SELECT * FROM ls_list ls WHERE ls.IS_FLAG != 'F' ORDER BY IS_FLAG limit ${s1}, ${s2}`;
         query(sql,function (err,data) {
             if (data.length != 0) {
+                for (let i=0;i<data.length;i++) {
+                    data[i].IS_FLAG = common.ischeck(data[i].IS_FLAG);
+                }
                 res.send({total:size,rows:data});
             }else {
                 res.send({total:0,rows:''});
@@ -183,20 +186,23 @@ module.exports = () => {
         form.uploadDir = '../www/file';
         form.multiples=true;
         form.keepExtensions=true;
-        form.parse(req, function(err, fields, files) {
-            if(files.file){
-                var img = files.file.path;
-                let sql = `INSERT INTO ls_list ( ID, HEAD_PORTRAIT,NAME, OFFICE,FIELD,MONEY,IS_FLAG )
-            VALUES ( '${UUID.v1()}','${img.replace("../www","")}','${fields.NAME}','${fields.OFFICE}','${fields.FIELD}','${fields.MONEY}','${fields.OPENID}','${fields.IS_FLAG}' )`;
+        form.parse(req, function(err, fields) {
+            let size = 0;
+            let sql1 = `SELECT COUNT(*) as count FROM ls_list WHERE OPENID='${fields.WX_CODE}'`;
+            query(sql1,function (err,data) {
+                size = data[0].count;
+            });
+            if(size == 0){
+                let sql = `INSERT INTO ls_list ( ID, HEAD_PORTRAIT,NAME, OFFICE,FIELD,MONEY,CALLTIME,OPENID,IS_FLAG) VALUES ( '${UUID.v1()}','${fields.WX_IMG}','${fields.NAME}','${fields.OFFICE}','${fields.FIELD}','${fields.MONEY}','${fields.CALLTIME}','${fields.WX_CODE}','N')`;
                 query(sql,function (err,data) {
                     if (err) {
                         res.send({ 'msg': '服务器出错', 'status': 0 }).end();
                     } else {
-                        res.send({ 'msg': '提问成功', 'status': 1 }).end();
+                        res.send({ 'msg': '申请已提交', 'status': 1 }).end();
                     }
                 });
-            }else {
-                res.send({ 'msg': '请上传头像', 'status': 0 }).end();
+            }else{
+                res.send({ 'msg': '律师已存在', 'status': 2 }).end();
             }
 
         });
@@ -244,16 +250,28 @@ module.exports = () => {
         //     }
         // });
     });
-
-    //删除电话咨询数据
-    route.post('/server/lawyer/del', (req, res) => {
+    //同意律师申请审批
+    route.post('/server/lawyer/sure', (req, res) => {
         var id = req.body.id;
-        let sql = `delete lp from  ls_list lp where lp.ID='${id}'`;
+        let sql = `UPDATE ls_list SET  IS_FLAG = 'Y' where ID='${id}'`;
         query(sql,function (err,data) {
             if (err) {
-                res.status(200).send({ 'msg': '删除失败', 'status': 0 }).end();
+                res.status(200).send({ 'msg': '审批失败', 'status': 0 }).end();
             } else {
-                res.status(200).send({ 'msg': '删除成功', 'status': 1 }).end();
+                res.status(200).send({ 'msg': '审批成功', 'status': 1 }).end();
+            }
+        });
+    });
+
+    //同意律师申请审批
+    route.post('/server/lawyer/refuse', (req, res) => {
+        var id = req.body.id;
+        let sql = `UPDATE ls_list SET  IS_FLAG = 'F' where ID='${id}'`;
+        query(sql,function (err,data) {
+            if (err) {
+                res.status(200).send({ 'msg': '拒绝申请失败', 'status': 0 }).end();
+            } else {
+                res.status(200).send({ 'msg': '拒绝申请成功', 'status': 1 }).end();
             }
         });
     });

@@ -16,9 +16,9 @@
                                 <p style="margin-left: 10px">{{item.NAME}}</p>
                                 <p style="margin-left: 10px">{{item.OFFICE}}</p>
                                 <p style="margin-left: 10px;border: 1px solid #ccc;padding: 0 7px;">{{item.FIELD}}</p>
+                                <p style="margin-left: 10px;border: 1px solid #ccc;padding: 0 7px;">{{item.CALLTIME}}</p>
                             </div>
                             <div class="img_layout" style="float: right;margin-right: 10px">
-                                <p style="border: 1px solid red;padding: 0 5px;border-radius: 12px;color: red;">{{item.IS_FLAG}}</p>
                                 <router-link :to="{path:'/phoneCounselingDetail',query:item}">
                                     <button>电话咨询</button>
                                 </router-link>

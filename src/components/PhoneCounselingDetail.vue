@@ -109,6 +109,7 @@
                     if(res.status == "200"){
                         wexinPay(res.data,function success(res) {
                             alert("支付成功！");
+                            window.location.href = '/lawyerList';
                         },function error(res) {
                             alert("支付失败！");
                         });

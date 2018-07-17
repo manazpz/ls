@@ -7,6 +7,7 @@ import LawyerList from './components/LawyerList.vue'
 import PhoneCounselingDetail from  './components/PhoneCounselingDetail.vue'
 import PhoneCounselingList from  './components/PhoneCounselingList.vue'
 import error from  './components/error.vue'
+import beLawyer from  './components/beLawyer.vue'
 export default [{
     path: '/home',
     component: Home
@@ -40,4 +41,7 @@ export default [{
 }, {
     path: '/phoneCounselingList',
     component: PhoneCounselingList
+}, {
+    path: '/beLawyer',
+    component: beLawyer
 }]

@@ -55,6 +55,15 @@
     float: left;
     clear:both;
 }
+.div_layout p{
+    margin: 20px auto;
+    display:block;
+    width:100%;
+    height:70px;
+    position:absolute;
+    text-align:center;
+    font-size: 18px;
+}
 
 .div1_layout {
     width:100%;

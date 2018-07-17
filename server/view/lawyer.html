@@ -75,7 +75,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a class="active-menu"  href="../view/lawyer.html"><i class="fa fa-user"></i> 律師管理</a>
+                    <a class="active-menu"  href="../view/lawyer.html"><i class="fa fa-user"></i> 律师管理</a>
                 </li>
 
             </ul>
@@ -88,79 +88,19 @@
     <div id="page-wrapper">
         <div class="header">
             <h1 class="page-header">
-                律師管理 <small></small>
+                律师管理 <small></small>
             </h1>
         </div>
         <div id="page-inner">
-
             <!-- /. ROW  -->
             <div class="row">
                 <div id="toolbar">
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                        <i class="fd fd-adn">新增律師</i>
-                    </button>
                 </div>
                 <div class="table-responsive">
                     <table id="tb_departments">
                     </table>
                 </div>
             </div>
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            </button>
-                            <h4 class="modal-title" id="myModalLabel">
-                                律師编辑
-                            </h4>
-                        </div>
-                        <div class="modal-body">
-                            <input type="text" name="id" style="display:none"/>
-                            <div>
-                                <span>微信唯一标识符&nbsp;:&nbsp;</span><input type="text" name="OPENID" />
-                            </div>
-                            <div style="height:10px"> </div>
-                            <div>
-                                <span>名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;字&nbsp;:&nbsp;</span><input type="text" name="NAME" />
-                            </div>
-                            <div style="height:10px"> </div>
-                            <div>
-                                <span>事&nbsp;&nbsp;務&nbsp;&nbsp;所&nbsp;:&nbsp;</span><input type="text" name="OFFICE" />
-                            </div>
-                            <div style="height:10px"> </div>
-                            <div>
-                                <span>擅長&nbsp;領域:&nbsp;</span><input type="text" name="FIELD" />
-                            </div>
-                            <div style="height:10px"> </div>
-                            <div>
-                                <span>價格/分鐘:&nbsp;</span><input type="text" name="MONEY" />
-                            </div>
-                            <div style="height:10px"> </div>
-                            <div>
-                                <span>是否认证:&nbsp;</span>
-                                <select name="IS_FLAG">
-                                    <option value ="已认证">已认证</option>
-                                    <option value ="未认证">未认证</option>
-                                </select>
-                            </div>
-                            <div style="height:10px"> </div>
-                            <div>
-                                <span>上传头像:&nbsp;</span><input id="pic" type="file" name = 'pic' accept = "image/*"/>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" onclick="closeLawyer(this)">
-                                关闭
-                            </button>
-                            <button type="button" class="btn btn-primary" onclick="addLawyer(this)">
-                                提交更改
-                            </button>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
-
         </div>
     </div>
 </div>

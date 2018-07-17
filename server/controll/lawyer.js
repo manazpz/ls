@@ -44,19 +44,22 @@ var TableInit = function () {
                 visible: false                  //是否显示复选框
             }, {
                 field: 'NAME',
-                title: '名字'
+                title: '姓名'
             }, {
                 field: 'OFFICE',
-                title: '事務所'
+                title: '事物所'
             }, {
                 field: 'FIELD',
-                title: '擅長領域'
+                title: '擅長领域'
             },{
                 field: 'MONEY',
-                title: '價格/分鐘'
+                title: '价格/分钟'
+            },{
+                field: 'CALLTIME',
+                title: '可接听时段'
             },{
                 field: 'IS_FLAG',
-                title: '是否認證'
+                title: '是否已审核'
             }, {
                 field:'ID',
                 title: '操作',
@@ -94,17 +97,33 @@ var ButtonInit = function () {
 function actionFormatter(value, row, index) {
     var id = value;
     var result = "";
-    result += "<a href='javascript:;' class='btn btn-xs red' onclick=\"edit(" + JSON.stringify(row).replace(/"/g, '&quot;') + ",this)\" title='修改'><span class='glyphicon glyphicon-edit'></span></a>";
-    result += "<a href='javascript:;' style='margin-left: 10px' class='btn btn-xs red' onclick=\"DelViewById('" + id + "')\" title='删除'><span class='glyphicon glyphicon-remove'></span></a>";
-
+    result += "<a href='javascript:;' class='btn btn-xs red' onclick=\"sure('" + id + "')\" title='同意'><span class='glyphicon glyphicon-ok'></span></a>";
+    result += "<a href='javascript:;' style='margin-left: 10px' class='btn btn-xs red' onclick=\"refuse('" + id + "')\" title='拒绝'><span class='glyphicon glyphicon-remove'></span></a>";
     return result;
-
 };
 
-function  DelViewById(id) {
+function sure(id) {
     $.ajax({
         type: "POST",
-        url: "/server/lawyer/del",
+        url: "/server/lawyer/sure",
+        data: {id:id},
+        dataType: "json",
+        success: function(data){
+            if(data.status == 1) {
+                window.location.reload();
+            }else {
+                alert(data.msg);
+            }
+        },
+        error:function (data) {
+            alert('请求出错！');
+        }
+    });
+}
+function refuse(id) {
+    $.ajax({
+        type: "POST",
+        url: "/server/lawyer/refuse",
         data: {id:id},
         dataType: "json",
         success: function(data){
@@ -124,122 +143,4 @@ function initTable() {
     $('#table').bootstrapTable({
         showSearchButton: true, //显示搜索按钮
     });
-}
-
-function edit(row,event) {
-    $('#myModal').modal('show');
-    document.getElementsByName('NAME')[0].value = row.NAME;
-    document.getElementsByName('OFFICE')[0].value = row.OFFICE;
-    document.getElementsByName('FIELD')[0].value = row.FIELD;
-    document.getElementsByName('MONEY')[0].value = row.MONEY;
-    document.getElementsByName('IS_FLAG')[0].value = row.IS_FLAG;
-    document.getElementsByName('id')[0].value = row.ID;
-    document.getElementsByName('OPENID')[0].value = row.OPENID;
-}
-
-function closeLawyer() {
-    $('#myModal').modal('hide');
-    document.getElementsByName('NAME')[0].value = "";
-    document.getElementsByName('OFFICE')[0].value = "";
-    document.getElementsByName('FIELD')[0].value = "";
-    document.getElementsByName('MONEY')[0].value = "";
-    document.getElementsByName('IS_FLAG')[0].value = "已认证";
-    document.getElementsByName('id')[0].value = "";
-    document.getElementsByName('OPENID')[0].value = "";
-    document.querySelector("#pic").files[0] = "";
-}
-
-function addLawyer(evn) {
-    var NAME = document.getElementsByName('NAME')[0].value;
-    var OFFICE = document.getElementsByName('OFFICE')[0].value;
-    var FIELD = document.getElementsByName('FIELD')[0].value;
-    var MONEY = document.getElementsByName('MONEY')[0].value;
-    var IS_FLAG = document.getElementsByName('IS_FLAG')[0].value;
-    var OPENID = document.getElementsByName('OPENID')[0].value;
-    var id = document.getElementsByName('id')[0].value;
-    var file = document.querySelector("#pic").files[0];
-
-    if(id != null && id != "") {
-        var param = new FormData();
-        if(file){
-            param.append("file",file);
-        }
-        param.append("NAME",NAME);
-        param.append("OFFICE",OFFICE);
-        param.append("FIELD",FIELD);
-        param.append("MONEY",MONEY);
-        param.append("IS_FLAG",IS_FLAG);
-        param.append("OPENID",OPENID);
-        param.append("ID",id);
-        $.ajax({
-            type: "POST",
-            url: "/server/lawyer/update",
-            data: param,
-            dataType: "json",
-            contentType: false,
-            processData: false,
-            success: function(data){
-                if(data.status == 1){
-                    $('#myModal').modal('hide');
-                    bootoast({
-                        message: '更新成功',
-                        type: 'success',
-                        position:'right-bottom',
-                        timeout:2
-                    });
-                }else {
-                    bootoast({
-                        message: '更新失败',
-                        type: 'danger',
-                        position:'right-bottom',
-                        timeout:2
-                    });
-                }
-            },
-            error:function (data) {
-                alert('请求出错！');
-            }
-        });
-    }else {
-        var param = new FormData();
-        if(file){
-            param.append("file",file);
-        }
-        param.append("NAME",NAME);
-        param.append("OFFICE",OFFICE);
-        param.append("FIELD",FIELD);
-        param.append("MONEY",MONEY);
-        param.append("IS_FLAG",IS_FLAG);
-        param.append("OPENID",OPENID);
-        $.ajax({
-            type: "POST",
-            url: "/server/lawyer/add",
-            data: param,
-            dataType: "json",
-            contentType: false,
-            processData: false,
-            success: function(data){
-                if(data.status == 1){
-                    $('#myModal').modal('hide');
-                    bootoast({
-                        message: '创建成功',
-                        type: 'success',
-                        position:'right-bottom',
-                        timeout:2
-                    });
-                }else {
-                    bootoast({
-                        message: data.msg,
-                        type: 'danger',
-                        position:'right-bottom',
-                        timeout:2
-                    });
-                }
-            },
-            error:function (data) {
-                alert('请求出错！');
-            }
-        });
-    }
-
 }
