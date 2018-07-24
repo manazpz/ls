@@ -51,10 +51,15 @@
             <p id="rate" style="display:none;">需支付：￥{{price}}</p>
         </div>
         <div class="lay">
-            <input v-model="name" type="text" style = 'width:100%;height: 30px' placeholder="姓名" />
+            <input v-model="name" type="text" style = 'width:100%;height: 30px' placeholder="称呼" />
         </div>
         <div class="lay">
             <input v-model="phone" type="text" style = 'width:100%;height: 30px' placeholder="联系方式" />
+        </div>
+        <div class="lay">
+            <p>温馨提示：</p>
+            <p>1、请尽量将问题描述清楚；</p>
+            <p>2、系统将根据您所提问的类型和内容推荐最适合的律师；</p>
         </div>
         <div class="lay">
             <button type="submit" style = 'width:100%;height: 40px;background: rgb(0, 102, 204); font-size: 18px;' @click="submit">提交</button>

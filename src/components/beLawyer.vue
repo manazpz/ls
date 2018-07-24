@@ -2,7 +2,7 @@
           xmlns:v-cddv-final-check="http://www.w3.org/1999/xhtml">
     <div>
         <div class="div_layout" >
-            <p>申请成为律师</p>
+            <p class="div_layout_p">申请成为律师</p>
         </div>
             <div class="div_layout" style="height:1px;background: #0066cc"></div>
             <div class="div1_layout">
@@ -14,7 +14,7 @@
                 <span style="height: 10px ">事&nbsp;&nbsp;&nbsp;务&nbsp;&nbsp;&nbsp;&nbsp;所：</span><input v-model="OFFICE" style="height: 25px; width: 70%;border: 1px solid #808080; border-radius: 5px;">
             </div>
             <div class="div1_layout">
-                <span style="height: 10px">擅&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;长：</span><input v-model="FIELD" style="height: 25px; width: 70%;border: 1px solid #808080; border-radius: 5px;">
+                <span style="height: 10px">擅&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;长：</span><input v-model="FIELD" style="height: 25px; width: 70%;border: 1px solid #808080; border-radius: 5px;">
             </div>
             <div class="div1_layout">
                 <span style="height: 10px">可接听时段：</span><input v-model="CALLTIME" style="height: 25px; width: 70%;border: 1px solid #808080; border-radius: 5px;">

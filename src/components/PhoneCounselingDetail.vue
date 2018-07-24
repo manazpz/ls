@@ -44,16 +44,15 @@
                 <span style="height: 10px">共需支付：{{price}} 元</span>
             </div>
             <div class="lay">
-                <button type="submit" @click="pay" style = 'width: 100%;height: 36px;margin: 25px auto 25px;border-radius: 4px;background: #0066cc;font-size: 18px;' >提交</button>
+                <p>温馨提示：</p>
+                <p>1、电话咨询需购买10分钟以上，若有剩余，剩余金额不予退还；</p>
+                <p>2、请尽量保证电话在指定的时间段畅通；</p>
+                <p>3、超过购买时长，律师可主动结束通话；</p>
             </div>
             <div class="lay">
-                <p>温馨提示：</p>
-                <p>1、请尽量将问题描述清楚；</p>
-                <p>2、系统将根据您所提问的类型和内容推荐最适合的律师；</p>
-                <p>3、电话咨询需购买10分钟以上，若有剩余，剩余金额不予退还；</p>
-                <p>4、请尽量保证电话在指定的时间段畅通；</p>
-                <p>5、超过购买时长，律师可主动结束通话；</p>
+                <button type="submit" @click="pay" style = 'width: 100%;height: 36px;margin: 25px auto 25px;border-radius: 4px;background: #0066cc;font-size: 18px;' >提交</button>
             </div>
+
 
         </main>
 

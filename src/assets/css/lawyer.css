@@ -52,10 +52,9 @@
     width:100%;
     height: 70px;
     margin-top: 30px;
-    float: left;
     clear:both;
 }
-.div_layout p{
+.div_layout_p{
     margin: 20px auto;
     display:block;
     width:100%;

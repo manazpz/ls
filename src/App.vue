@@ -23,6 +23,7 @@
                 switch (to.path){
                     case '/index':
                     case '/problemDetail':
+                    case '/beLawyer':
                         this.$store.dispatch('hideNav');
                         this.$store.dispatch('hideNav1');
                         break;
@@ -32,10 +33,6 @@
                         this.$store.dispatch('hideNav1');
                         break;
                     case '/lawyerList':
-                    case '/beLawyer':
-                        this.$store.dispatch('hideNav');
-                        this.$store.dispatch('hideNav1');
-                        break;
                     case '/phoneCounselingDetail':
                         this.$store.dispatch('hideNav');
                         break;
@@ -53,6 +50,7 @@
             switch (this.$route.path){
                 case '/error':
                 case '/index':
+                case '/beLawyer':
                 case '/problemDetail':
                     this.$store.dispatch('hideNav');
                     this.$store.dispatch('hideNav1');
@@ -64,10 +62,6 @@
                     this.$store.dispatch('hideNav1');
                     break;
                 case '/lawyerList':
-                case '/beLawyer':
-                    this.$store.dispatch('hideNav');
-                    this.$store.dispatch('hideNav1');
-                    break;
                 case '/phoneCounselingDetail':
                 case '/PhoneCounselingList':
                     this.$store.dispatch('hideNav');

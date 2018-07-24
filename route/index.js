@@ -194,7 +194,7 @@ module.exports = () => {
 
     //律师列表
     route.get('/lawyerList', (req, res) => {
-        let sql = `SELECT * FROM ls_list WHERE IS_FLAG != 'F' `;
+        let sql = `SELECT * FROM ls_list WHERE IS_FLAG = 'Y' `;
         query(sql,function (err,data) {
             if (err) {
                 res.status(500).send({ 'msg': '服务器出错', 'status': 0 }).end();

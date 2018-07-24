@@ -43,7 +43,7 @@ axios.interceptors.response.use(function(response) { //配置请求回来的信�
 }, function(error) {
     return Promise.reject(error);
 });
-axios.defaults.baseURL = 'http://localhost/';
+axios.defaults.baseURL = 'http://www.dalvshilaila.com/';
 axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded'
 Vue.prototype.$http = axios;
 // 登录中间验证，页面需要登录而没有登录的情况直接跳转登录

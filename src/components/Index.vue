@@ -26,7 +26,7 @@
                     </li>
                     <li class="nav_item">
                         <a href="/beLawyer" class="nav_item_link">
-                            <img src="../assets/images/nav0.png" alt="" >
+                            <img src="../assets/images/nav2.png" alt="" >
                             <span>成为律师</span>
                         </a>
                     </li>
